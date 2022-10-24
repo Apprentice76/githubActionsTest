@@ -12,9 +12,14 @@ jobs:
         IP=${{secrets.VM_IP}}
         KEY='${{secrets.VM_PRIVATE_KEY}}'
         REPO='githubActionsTest'
-        echo KEY > ./key.pem
-        chmod 600 ./key.pem
-        ssh -i ./key.pem -o StrictHostKeyChecking=no azureuser@${IP}
+        'command -v ssh-agent >/dev/null || ( apt-get install openssh )'
+        eval $(ssh-agent -s)
+        echo "$KEY" | tr -d '\r' | ssh-add -
+        mkdir -p ~/.ssh
+        chmod 700 ~/.ssh
+        ssh-keyscan $IP >> ~/.ssh/known_hosts
+        chmod 644 ~/.ssh/known_hosts
+        ssh -o StrictHostKeyChecking=no azureuser@${IP}
         sudo apt-get update && sudo apt-get install git
         if [ ! -d $REPO ]; then
           git clone https://github.com/Apprentice76/githubActionsTest.git
