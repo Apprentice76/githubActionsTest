@@ -28,5 +28,5 @@ jobs:
           git stash
           git pull
           echo "Done updating..."
-          git stash pop
+          git stash pop >/dev/null
         EOF
