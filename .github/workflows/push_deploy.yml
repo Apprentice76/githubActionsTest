@@ -7,9 +7,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - name: connect via SSH
     - run: |
         IP=${{secrets.VM_IP}}
         KEY=${{secrets.VM_PRIVATE_KEY}}
