@@ -10,7 +10,7 @@ jobs:
     steps:
     - run: |
         IP=${{secrets.VM_IP}}
-        KEY=${{secrets.VM_PRIVATE_KEY}}
+        KEY='${{secrets.VM_PRIVATE_KEY}}'
         REPO='githubActionsTest'
         echo KEY > ./key.pem
         ssh -i ./key.pem -o StrictHostKeyChecking=no azureuser@${IP}
