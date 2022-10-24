@@ -12,7 +12,7 @@ jobs:
         IP=${{secrets.VM_IP}}
         KEY='${{secrets.VM_PRIVATE_KEY}}'
         REPO='githubActionsTest'
-        'command -v ssh-agent >/dev/null || ( apt-get install openssh )'
+        command -v ssh-agent >/dev/null || ( apt-get install openssh )
         eval $(ssh-agent -s)
         echo "$KEY" | tr -d '\r' | ssh-add -
         mkdir -p ~/.ssh
