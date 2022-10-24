@@ -27,6 +27,6 @@ jobs:
           cd $REPO
           git stash
           git pull
-          echo "Done updating..."
           git stash pop >/dev/null
+          echo "Done updating..."
         EOF
