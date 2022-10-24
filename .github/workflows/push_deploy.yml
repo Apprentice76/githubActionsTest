@@ -19,7 +19,7 @@ jobs:
         chmod 700 ~/.ssh
         ssh-keyscan $IP >> ~/.ssh/known_hosts
         chmod 644 ~/.ssh/known_hosts
-        ssh -o StrictHostKeyChecking=no azureuser@${IP}
+        ssh -o StrictHostKeyChecking=no -t azureuser@${IP}
         sudo apt-get update && sudo apt-get install git
         if [ ! -d $REPO ]; then
           git clone https://github.com/Apprentice76/githubActionsTest.git
